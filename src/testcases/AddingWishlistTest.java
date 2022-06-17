@@ -29,7 +29,7 @@ public class AddingWishlistTest extends BaseClass{
 		homeObj.categoryMP3Players.click();
 		homeObj.wishlistProduct("iPod Classic");
 		homeObj.wishlistProduct("iPod Touch");
-		
 	}
+	
 	
 }

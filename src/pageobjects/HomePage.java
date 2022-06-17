@@ -1,6 +1,7 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ public class HomePage extends BaseClass{
 		// TODO Auto-generated constructor stub
 		PageFactory.initElements(driver, this);
 	}
-
+	
 	@FindBy(xpath="//li[@class='dropdown open']")
 	WebElement MyAccountDropDown;
 	
@@ -33,7 +34,7 @@ public class HomePage extends BaseClass{
 	@FindBy(xpath = "//nav[@id='menu']//a[contains(text(),'Desktops')]/parent::li//a[contains(text(),'Mac')]")
 	public WebElement categoryMacDesktop;
 	
-	@FindBy(xpath = "//nav[@id='menu']//a[contains(text(),'Components')]/parent::div")
+	@FindBy(xpath = "//a[@data-toggle='dropdown' and contains(text(),'Components')]")
 	public WebElement componentsBtn;
 	
 	@FindBy(xpath = "//nav[@id='menu']//a[contains(text(),'Components')]/parent::li//a[contains(text(),'Monitors')]")
@@ -54,8 +55,9 @@ public class HomePage extends BaseClass{
 	
 	
 	public void wishlistProduct(String productName) {
-		WebElement wishlistBtn = driver.findElement(By.xpath("//a[contains(text(),'"+productName+"')]/ancestor::div[@class='product-thumb']//button[@data-original-title='Add to Wish List']"));
-		wishlistBtn.click();
+		WebElement wishlistBtn = driver.findElement(By.xpath("//a[contains(text(),'"+productName+"')]/ancestor::div[@class='product-thumb']//i[@class='fa fa-heart']"));	
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", wishlistBtn);
 	}
 	
 	
